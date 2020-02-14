@@ -3,7 +3,7 @@ Wrappers for common Vault functions
 
 ## Usage
 
-### list_secrets
+### list_secrets [secret-engine]
 With engine argument:
 ```
 bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets services
@@ -19,7 +19,7 @@ Sample Output:
 ["Apple", "Dell", "Microsoft"]
 ```
 
-### get_secret
+### get_secret [secret-engine secret-name]
 With engine and secret arguments:
 ```
 bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secret services service

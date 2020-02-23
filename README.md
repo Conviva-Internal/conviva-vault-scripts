@@ -5,7 +5,7 @@ Wrappers for common Vault functions
 
 ### list_secrets [secret-engine]
 With engine argument:
-```
+```shell
 bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets services
 ```
 

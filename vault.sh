@@ -94,10 +94,6 @@ add_service_user() {
         https://${URL}/v1/auth/userpass/users/${NEW_USERNAME}
 }
 
-attach_service_policy() {
-echo todo
-}
-
 #################
 # Main Function #
 #################
@@ -113,7 +109,7 @@ case "$1" in
     "get_secret"         ) get_secret $2 $3            ;;
     "add_secret"         ) add_secret $2 $3            ;;
     "list_users"         ) list_users                  ;;
-    "add_service_user"   ) add_service_user $2         ;;
+    "add_service_user"   ) add_service_user $2 $3 $4   ;;
     "add_service_policy" ) add_service_policy $2 $3 $4 ;;
     "*"                  ) echo "Invalid argument.  Options: $OPTIONS"
 esac

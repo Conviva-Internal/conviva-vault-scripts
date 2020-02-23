@@ -50,12 +50,52 @@ list_users() {
     curl -sk \
         --header "X-Vault-Token: ${TOKEN}" \
         --request LIST \
-        https://${URL}/v1/auth/okta/users \
+        https://${URL}/v1/auth/userpass/users \
             | grep -o '\[.*\]'
 }
 
+add_service_policy() {
+    POLICY=$1
+    PATH=$2
+    CAPABILTIES=$3
+    if [ -z ${POLICY} ]; then
+        read -p "Policy Name (Example: sql-ro): " POLICY
+    fi
+    if [ -z ${PATH} ]; then
+        read -p "Policy path (Example: sql/sql-ro): " PATH
+    fi
+        if [ -z ${CAPABILTIES} ]; then
+        read -p "Policy capabilities (Example: create, list): " CAPABILTIES
+    fi
+    curl -sk \
+        --header "X-Vault-Token: ${TOKEN}" \
+        --request PUT \
+        --data "{\"policy\": \"path \"${PATH}\" {capabilities = [${CAPABILITIES}]\"}" \
+        https://${URL}/v1/sys/policy/${POLICY}
+}
+
 add_service_user() {
-    echo "TODO"
+    NEW_USERNAME=$1
+    NEW_PASSWORD=$2
+    POLICIES=$3
+    if [ -z ${NEW_USERNAME} ]; then
+        read -p "Service Name (Example: sql): " NEW_USERNAME
+    fi
+    if [ -z ${NEW_PASSWORD} ]; then
+        read -sp "Service Password (Example: ********): " NEW_PASSWORD
+    fi
+    if [ -z ${POLICIES} ]; then
+        read -p "Service Policies (Example: sql-readonly): " POLICIES
+    fi
+    curl -sk \
+        --header "X-Vault-Token: ${TOKEN}" \
+        --request POST \
+        --data "{\"password\": \"${NEW_PASSWORD}\",\"policies\": \"${POLICIES}\"}" \
+        https://${URL}/v1/auth/userpass/users/${NEW_USERNAME}
+}
+
+attach_service_policy() {
+echo todo
 }
 
 #################
@@ -68,11 +108,12 @@ if [ -z $1 ]; then echo "Invalid argument.  Options: $OPTIONS"; fi
 get_token
 
 case "$1" in
-    "get_token"        ) echo "${TOKEN}"     ;;
-    "list_secrets"     ) list_secrets $2     ;;
-    "get_secret"       ) get_secret $2 $3    ;;
-    "add_secret"       ) add_secret $2 $3    ;;
-    "list_users"       ) list_users          ;;
-    "add_service_user" ) add_service_user $1 ;;
-    "*"                ) echo "Invalid argument.  Options: $OPTIONS"
+    "get_token"          ) echo "${TOKEN}"             ;;
+    "list_secrets"       ) list_secrets $2             ;;
+    "get_secret"         ) get_secret $2 $3            ;;
+    "add_secret"         ) add_secret $2 $3            ;;
+    "list_users"         ) list_users                  ;;
+    "add_service_user"   ) add_service_user $2         ;;
+    "add_service_policy" ) add_service_policy $2 $3 $4 ;;
+    "*"                  ) echo "Invalid argument.  Options: $OPTIONS"
 esac

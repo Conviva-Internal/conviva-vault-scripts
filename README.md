@@ -2,11 +2,19 @@
 Wrappers for common Vault functions
 
 ## Usage
+| Command      | Optional Arguments | Example |
+| -            | -                  | -       |
+| list_secrets | Secret             | bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets services
+
+
+
 
 ### list_secrets [secret-engine]
 With engine argument:
 ```shell
 bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets services
+
+curl -L https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh | bash -s -- 
 ```
 
 Without engine argument:

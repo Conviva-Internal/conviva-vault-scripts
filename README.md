@@ -2,7 +2,7 @@
 Wrappers for common Vault functions
 
 ## Usage
-| Argument      | Description                                                            |
+| Term          | Description                                                            |
 | -             | -                                                                      |
 | secret        | Encrypted data stored in Vault that can be decrypted by authentication |
 | secret_engine | The Key/Value table containing a list of secrets                       |

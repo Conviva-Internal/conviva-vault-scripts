@@ -2,11 +2,18 @@
 Wrappers for common Vault functions
 
 ## Usage
-| Command      | Optional Arguments | Example |
-| -            | -                  | -       |
-| list_secrets | Secret             | bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets services
+| Argument      | Description                                                            |
+| -             | -                                                                      |
+| secret        | Encrypted data stored in Vault that can be decrypted by authentication |
+| secret_engine | The Key/Value table containing a list of secrets                       |
 
-
+| Action/Command   | Optional Arguments    | Example                                                                                                                                 |
+| -                | -                     | -                                                                                                                                       |
+| list_secrets     | secret_engine         | `bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets secret_engine` |
+| get_secret       | secret_engine, secret | `bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secret secret_engine secret`
+| add_secret       |
+| list_users       |
+| add_service_user |
 
 
 ### list_secrets [secret-engine]

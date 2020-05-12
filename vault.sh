@@ -54,35 +54,35 @@ get_secret_name () {
 
 get_policy_name () {
     if [ -z ${POLICY_NAME} ]; then
-        echo "Enter a Secret (Example: mysql-ro): "
+        echo "Enter a Policy Name (Example: mysql-ro): "
         read POLICY_NAME
     fi
 }
 
 get_policy_path () {
     if [ -z ${POLICY_PATH} ]; then
-        echo "Enter a Secret (Example: databases/mysql-dev): "
+        echo "Enter a Policy Path (Example: databases/mysql-dev): "
         read POLICY_PATH
     fi
 }
 
 get_policy_capabilities () {
     if [ -z ${POLICY_CAPABILITIES} ]; then
-        echo "Enter a Secret (Example: create, list, read): "
+        echo "Enter a Policy Capability (Example: create, list, read): "
         read POLICY_CAPABILITIES
     fi
 }
 
 get_new_username () {
     if [ -z ${NEW_USERNAME} ]; then
-        echo "Enter a Secret (Example: mysql-ro): "
+        echo "Enter a New Username (Example: mysql-ro): "
         read NEW_USERNAME
     fi
 }
 
 get_new_password () {
     if [ -z ${NEW_PASSWORD} ]; then
-        echo "Enter a Secret (Example: ********): "
+        echo "Enter a New Password (Example: ********): "
         read NEW_PASSWORD
     fi
 }

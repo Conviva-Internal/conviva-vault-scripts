@@ -73,6 +73,20 @@ get_policy_capabilities () {
     fi
 }
 
+get_new_username () {
+    if [ -z ${NEW_USERNAME} ]; then
+        echo "Enter a Secret (Example: mysql-ro): "
+        read NEW_USERNAME
+    fi
+}
+
+get_new_password () {
+    if [ -z ${NEW_PASSWORD} ]; then
+        echo "Enter a Secret (Example: ********): "
+        read NEW_PASSWORD
+    fi
+}
+
 ###################################
 # Action/Command Helper Functions #
 ###################################

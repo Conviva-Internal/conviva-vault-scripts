@@ -1,11 +1,14 @@
 # conviva-vault-scripts
 Wrappers for common Vault functions
 
-## Usage
+## Terminology
 | Term          | Description                                                            |
 | -             | -                                                                      |
 | secret        | Encrypted data stored in Vault that can be decrypted by authentication |
 | secret_engine | The Key/Value table containing a list of secrets                       |
+
+## Usage
+Choose one action, and add any optional arguments.  If you do not choose an optional argument you will ebe give a prompt to fill in the apropriate information.
 
 | Action/Command   | Optional Arguments    | Example                                                                                                                                 |
 | -                | -                     | -                                                                                                                                       |

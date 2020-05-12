@@ -22,7 +22,7 @@ get_vault_password () {
         echo "Your Okta Password (Example: ********): "
         read -s VAULT_PASSWORD
     fi
-    if [ ${VAULT_AUTH_METHOD} == "okta" ]; then
+    if [[ ${VAULT_AUTH_METHOD} == "okta" ]]; then
         echo "Approve login through your Okta Verify Mobile App"
     fi
 }
@@ -32,7 +32,7 @@ get_vault_auth_method () {
         echo "Enter an authentication method (Examples: okta, userpass): "
         read SECRET_ENGINE
     fi
-    if [ ${VAULT_AUTH_METHOD} != "okta" ] && [ ${VAULT_AUTH_METHOD} != "userpass" ]; then
+    if [[ ${VAULT_AUTH_METHOD} != "okta" ]] && [[ ${VAULT_AUTH_METHOD} != "userpass" ]]; then
         echo "Invalid auth method.  Options: [okta, userpass]"
         exit 1
     fi

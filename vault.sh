@@ -30,7 +30,7 @@ get_vault_password () {
 get_vault_auth_method () {
     if [ -z ${VAULT_AUTH_METHOD} ]; then
         echo "Enter an authentication method (Examples: okta, userpass): "
-        read SECRET_ENGINE
+        read VAULT_AUTH_METHOD
     fi
     if [[ ${VAULT_AUTH_METHOD} != "okta" ]] && [[ ${VAULT_AUTH_METHOD} != "userpass" ]]; then
         echo "Invalid auth method.  Options: [okta, userpass]"

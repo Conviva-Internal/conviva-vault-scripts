@@ -185,7 +185,7 @@ while [[ "$#" -gt 0 ]]; do
         --policy-capabilities ) POLICY_CAPABILITIES="$2" ; shift  ;;
         --new-username        ) NEW_USERNAME="$2"        ; shift  ;;
         --new-password        ) NEW_PASSWORD="$2"        ; shift  ;;
-        * ) echo "Unknown parameter passed: $1"          ; exit 1 ;;
+        * ) echo "[$0]: Unknown parameter passed: $1"    ; exit 1 ;;
     esac
     shift
 done

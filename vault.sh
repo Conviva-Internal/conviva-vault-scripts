@@ -119,9 +119,14 @@ list_secrets () {
 get_secret () {
     get_secret_engine
     get_secret_name
-    curl -sk \
+    OUTPUT=$(curl -sk \
         --header "X-Vault-Token: ${TOKEN}" \
         https://${VAULT_URL}/v1/${SECRET_ENGINE}/data/${SECRET}
+    )
+    if ! [ -z ${KEY} ];then
+        OUTPUT=$(echo "${OUTPUT}" | sed "s/.*\"${KEY}\"://g" | cut -d "\"" -f2)
+    fi
+    echo "${OUTPUT}"
 }
 
 add_secret () {
@@ -180,6 +185,7 @@ while [[ "$#" -gt 0 ]]; do
         -p|--password         ) VAULT_PASSWORD="$2"      ; shift  ;;
         -e|--secret-engine    ) SECRET_ENGINE="$2"       ; shift  ;;
         -s|--secret           ) SECRET="$2"              ; shift  ;;
+        -k|--key              ) KEY="$2"                 ; shift  ;;
         --policy-name         ) POLICY_NAME="$2"         ; shift  ;;
         --policy-path         ) POLICY_PATH="$2"         ; shift  ;;
         --policy-capabilities ) POLICY_CAPABILITIES="$2" ; shift  ;;

@@ -8,19 +8,34 @@ Wrappers for common Vault functions
 | secret_engine | The Key/Value table containing a list of secrets                       |
 
 ## Usage
-Choose one action, and add any optional arguments.  If you do not choose an optional argument you will ebe give a prompt to fill in the apropriate information.
+```
+./vault.sh [action] [argument]
+```
 
-| Arguments | 
+| Action |
+| -      |
 
-| Action/Command   | Optional Arguments    | Example                                                                                                                                 |
-| -                | -                     | -                                                                                                                                       |
-| get_token        |
-| list_secrets     | secret_engine         | `bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) list_secrets secret_engine` |
-| get_secret       | secret_engine, secret | `bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secret secret_engine secret`
-| add_secret       | secret_engine, secret | TBD
-| list_users       | 
-| add_service_user |
 
+
+| Argument |
+| -        |
+
+### Example
+```
+read -s VAULT_PASS
+read -s VAULT_USER
+wget https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh
+chmod +x vault.sh
+./vault.sh \
+    get_secret \
+    -w vault.prod.conviva.com \
+    -u ${VAULT_USER}  \
+    -a okta \
+    -p ${VAULT_PASS} \
+    -e techops \
+    -s godaddy \
+    -k password
+```
 
 ### list_secrets [secret-engine]
 With engine argument:

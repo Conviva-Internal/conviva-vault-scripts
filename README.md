@@ -1,24 +1,21 @@
 # conviva-vault-scripts
 Wrappers for common Vault functions
 
-## Terminology
-| Term          | Description                                                            |
-| -             | -                                                                      |
-| secret        | Encrypted data stored in Vault that can be decrypted by authentication |
-| secret_engine | The Key/Value table containing a list of secrets                       |
-
 ## Usage
 ```
 ./vault.sh [action] [argument]
 ```
 
-| Action |
-| -      |
-
-
-
-| Argument |
-| -        |
+### Action: get_secret
+| Argument | Description                            |
+| -        | -                                      |
+| -w       | Vault's URL                            |
+| -a       | Authentication method [okta, userpass] |
+| -u       | Okta (or service) username             |
+| -p       | Okta (or service) password             |
+| -e       | Secret engine                          |
+| -s       | Secret name                            |
+| -k       | Key for the value you wish to retrieve |
 
 ### Example
 ```

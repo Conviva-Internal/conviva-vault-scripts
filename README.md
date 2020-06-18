@@ -17,7 +17,7 @@ Wrappers for common Vault functions
 | -s       | Secret name                            |
 | -k       | Key for the value you wish to retrieve |
 
-### Example
+### Examples
 ```
 read -s VAULT_PASS
 read -s VAULT_USER
@@ -26,10 +26,18 @@ chmod +x vault.sh
 ./vault.sh \
     get_secret \
     -w vault.prod.conviva.com \
-    -u ${VAULT_USER}  \
     -a okta \
+    -u ${VAULT_USER}  \
     -p ${VAULT_PASS} \
     -e techops \
     -s godaddy \
     -k password
 ```
+
+```
+read -s VAULT_PASS
+read -s VAULT_USER
+bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secrets -w vault.prod.conviva.com -a okta -u ${VAULT_USER}  -p ${VAULT_PASS} -e techops -s godaddy -k password
+```
+
+

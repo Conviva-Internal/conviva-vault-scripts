@@ -27,17 +27,17 @@ wget https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/ma
 chmod +x vault.sh
 ./vault.sh \
     get_secret \
-    -w vault.prod.conviva.com \
+    -w vault.environment.company.tld \
     -a okta \
     -u ${VAULT_USER}  \
     -p ${VAULT_PASS} \
-    -e techops \
-    -s godaddy \
+    -e mysql \
+    -s mysql-1 \
     -k password
 ```
 
 ```
-echo "Username: "; read VAULT_USER; echo "Password: "; read -s VAULT_PASS; bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secrets -w vault.prod.conviva.com -a okta -u ${VAULT_USER}  -p ${VAULT_PASS} -e techops -s godaddy -k password
+echo "Username: "; read VAULT_USER; echo "Password: "; read -s VAULT_PASS; bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secrets -w vault.environment.company.tld -a okta -u ${VAULT_USER}  -p ${VAULT_PASS} -e mysql -s mysql-1 -k password
 ```
 
 

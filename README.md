@@ -1,8 +1,8 @@
 # conviva-vault-scripts
-Wrappers for common Vault functions
+Wrappers for common Vault functions (https://www.vaultproject.io/api)
 
 ## Public Repository
-This repository is public for the purpose of allowing people and applications the ability to utilize these script(s) to interact with Vault's API without needing to authenticate with Github.  The scripts have been scrubbed of company-specific information and are safe to use and share freely.
+This repository is public for the purpose of allowing people and applications the ability to utilize these script(s) to interact with Vault's API (https://www.vaultproject.io/api) without needing to authenticate with Github.  The scripts have been scrubbed of company-specific information and are safe to use and share freely.
 
 ## Usage
 ```

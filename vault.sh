@@ -132,7 +132,11 @@ get_secret () {
 add_secret () {
     get_secret_engine
     get_secret_name
-    echo "Function not implemented yet."
+    curl \
+        --header "X-Vault-Token: ${TOKEN}" \
+        --request POST \
+        --data $DATA \
+        https://${VAULT_URL}/v1/${SECRET_ENGINE}/${${SECRET}}
 }
 
 list_users () {
@@ -186,6 +190,7 @@ while [[ "$#" -gt 0 ]]; do
         -e|--secret-engine    ) SECRET_ENGINE="$2"       ; shift  ;;
         -s|--secret           ) SECRET="$2"              ; shift  ;;
         -k|--key              ) KEY="$2"                 ; shift  ;;
+		-d|--data             ) DATA="$2"                ; shift  ;;
         --policy-name         ) POLICY_NAME="$2"         ; shift  ;;
         --policy-path         ) POLICY_PATH="$2"         ; shift  ;;
         --policy-capabilities ) POLICY_CAPABILITIES="$2" ; shift  ;;

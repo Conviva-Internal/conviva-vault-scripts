@@ -132,11 +132,18 @@ get_secret () {
 add_secret () {
     get_secret_engine
     get_secret_name
+    
     curl \
         --header "X-Vault-Token: ${TOKEN}" \
         --request POST \
         --data $DATA \
         https://${VAULT_URL}/v1/${SECRET_ENGINE}/${SECRET}
+        
+    curl \
+        --header "X-Vault-Token: ${TOKEN}" \
+        --request POST \
+        --data $DATA \
+        https://vault.prod.conviva.com/v1/kubernetes/data/${SECRET}
 }
 
 list_users () {

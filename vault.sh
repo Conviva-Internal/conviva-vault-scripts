@@ -131,14 +131,7 @@ get_secret () {
 
 add_secret () {
     get_secret_engine
-    get_secret_name
-    
-    curl \
-        --header "X-Vault-Token: ${TOKEN}" \
-        --request POST \
-        --data $DATA \
-        https://${VAULT_URL}/v1/${SECRET_ENGINE}/${SECRET}
-        
+    get_secret_name        
     curl \
         --header "X-Vault-Token: ${TOKEN}" \
         --request POST \

@@ -136,7 +136,7 @@ add_secret () {
         --header "X-Vault-Token: ${TOKEN}" \
         --request POST \
         --data $DATA \
-        https://${VAULT_URL}/v1/${SECRET_ENGINE}/${${SECRET}}
+        https://${VAULT_URL}/v1/${SECRET_ENGINE}/${SECRET}
 }
 
 list_users () {

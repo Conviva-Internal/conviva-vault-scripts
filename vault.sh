@@ -127,6 +127,7 @@ get_secret () {
         OUTPUT=$(echo "${OUTPUT}" \
             | sed "s/.*\"${KEY}\":\"//g" \
             | sed "s/\"},\"metadata\":.*//g" \
+            | sed "s/\\\",\\\".*//g" \
             | sed 's/\\\"/"/g'
         )
     fi

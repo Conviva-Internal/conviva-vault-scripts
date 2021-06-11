@@ -124,7 +124,11 @@ get_secret () {
         https://${VAULT_URL}/v1/${SECRET_ENGINE}/data/${SECRET}
     )
     if ! [ -z ${KEY} ];then
-        OUTPUT=$(echo "${OUTPUT}" | sed "s/.*\"${KEY}\"://g" | cut -d "\"" -f2)
+        OUTPUT=$(echo "${OUTPUT}" \
+            | sed "s/.*\"${KEY}\":\"//g" \
+            | sed "s/\"},\"metadata\":.*//g" \
+            | sed 's/\\\"/"/g'
+        )
     fi
     echo "${OUTPUT}"
 }
@@ -190,7 +194,7 @@ while [[ "$#" -gt 0 ]]; do
         -e|--secret-engine    ) SECRET_ENGINE="$2"       ; shift  ;;
         -s|--secret           ) SECRET="$2"              ; shift  ;;
         -k|--key              ) KEY="$2"                 ; shift  ;;
-		-d|--data             ) DATA="$2"                ; shift  ;;
+        -d|--data             ) DATA="$2"                ; shift  ;;
         --policy-name         ) POLICY_NAME="$2"         ; shift  ;;
         --policy-path         ) POLICY_PATH="$2"         ; shift  ;;
         --policy-capabilities ) POLICY_CAPABILITIES="$2" ; shift  ;;

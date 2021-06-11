@@ -124,13 +124,13 @@ get_secret () {
         https://${VAULT_URL}/v1/${SECRET_ENGINE}/data/${SECRET}
     )
     if ! [ -z ${KEY} ];then
-        #OUTPUT=$(echo "${OUTPUT}" \
-        #    | sed "s/.*\"${KEY}\":\"//g" \
-        #    | sed "s/\"},\"metadata\":.*//g" \
-        #    | sed "s/\\\",\\\".*//g" \
-        #    | sed 's/\\\"/"/g'
-        #)
-        OUTPUT=$(echo "${OUTPUT}" | sed "s/.*\"${KEY}\"://g" | cut -d "\"" -f2)
+        OUTPUT=$(echo "${OUTPUT}" \
+            | sed "s/.*\"${KEY}\":\"//g" \
+            | sed "s/\"},\"metadata\":.*//g" \
+            | sed "s/\\\",\\\".*//g" \
+            | sed 's/\\\"/"/g'
+        )
+        #OUTPUT=$(echo "${OUTPUT}" | sed "s/.*\"${KEY}\"://g" | cut -d "\"" -f2)
     fi
     echo "${OUTPUT}"
 }

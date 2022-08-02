@@ -101,7 +101,8 @@ get_token () {
     # Re-use tokens younger than 240m
     if find "${TOKEN_FILE}" -mmin -240 2> /dev/null | grep -q token; then
         TOKEN=$(cat ${TOKEN_FILE})
-    else
+    fi
+    if ! echo $TOKEN | grep -q "^s\."; then
         get_vault_username
         get_vault_password
         TOKEN=$(curl -sk \
@@ -217,6 +218,8 @@ while [[ "$#" -gt 0 ]]; do
     esac
     shift
 done
+
+[ $ACTION ] || ACTION="get_secret"
 
 get_token
 $ACTION

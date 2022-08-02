@@ -91,16 +91,27 @@ get_new_password () {
 # Action/Command Helper Functions #
 ###################################
 get_token () {
+    TOKEN_DIR="/tmp/.vault/"
+    TOKEN_FILE="${TOKEN_DIR}/token"
+    mkdir -p ${TOKEN_DIR} &> /dev/null
+
     get_vault_url
     get_vault_auth_method
-    get_vault_username
-    get_vault_password
-    TOKEN=$(curl -sk \
-        --request POST \
-        --data "{\"password\": \"${VAULT_PASSWORD}\"}" \
-        https://${VAULT_URL}/v1/auth/${VAULT_AUTH_METHOD}/login/${VAULT_USERNAME} \
-            | grep -o '"client_token":"[a-z.A-Z0-9]*' | cut -d '"' -f4
-    )
+
+    # Re-use tokens younger than 240m
+    if find "${TOKEN_FILE}" -mmin -240 2> /dev/null | grep -q token; then
+        TOKEN=$(cat ${TOKEN_FILE})
+    else
+        get_vault_username
+        get_vault_password
+        TOKEN=$(curl -sk \
+            --request POST \
+            --data "{\"password\": \"${VAULT_PASSWORD}\"}" \
+            https://${VAULT_URL}/v1/auth/${VAULT_AUTH_METHOD}/login/${VAULT_USERNAME} \
+                | grep -o '"client_token":"[a-z.A-Z0-9]*' | cut -d '"' -f4
+        )
+        echo "${TOKEN}" > ${TOKEN_FILE}
+    fi
 }
 
 display_token () {

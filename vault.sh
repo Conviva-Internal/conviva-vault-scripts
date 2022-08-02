@@ -95,12 +95,13 @@ get_token () {
     TOKEN_FILE="${TOKEN_DIR}/token"
     mkdir -p ${TOKEN_DIR} &> /dev/null
 
+    get_vault_url
+    get_vault_auth_method
+
     # Re-use tokens younger than 240m
-    if find "${TOKEN_FILE}" -mmin -240 | grep -q token; then
+    if find "${TOKEN_FILE}" -mmin -240 2> /dev/null | grep -q token; then
         TOKEN=$(cat ${TOKEN_FILE})
     else
-        get_vault_url
-        get_vault_auth_method
         get_vault_username
         get_vault_password
         TOKEN=$(curl -sk \

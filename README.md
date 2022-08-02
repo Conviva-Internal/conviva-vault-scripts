@@ -21,7 +21,13 @@ This repository is public for the purpose of allowing people and applications th
 | -k       | Key for the value you wish to retrieve |
 
 ### Examples
+#### One-Liner
+``` shell
+bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh )
 ```
+
+#### Re-Useable With Args
+``` shell
 echo "Username: "
 read VAULT_USER
 echo "Password: "
@@ -37,10 +43,6 @@ chmod +x vault.sh
     -e mysql \
     -s mysql-1 \
     -k password
-```
 
-```
-bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh )
-```
 
 

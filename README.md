@@ -21,12 +21,18 @@ This repository is public for the purpose of allowing people and applications th
 | -k       | Key for the value you wish to retrieve |
 
 ### Examples
+#### One-Liner
+``` shell
+bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh )
 ```
+
+#### Re-Useable With Args
+``` shell
 echo "Username: "
 read VAULT_USER
 echo "Password: "
 read -s VAULT_PASS
-wget https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh
+curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh > vault.sh
 chmod +x vault.sh
 ./vault.sh \
     get_secret \
@@ -37,10 +43,6 @@ chmod +x vault.sh
     -e mysql \
     -s mysql-1 \
     -k password
-```
 
-```
-echo "Username: "; read VAULT_USER; echo "Password: "; read -s VAULT_PASS; bash <( curl -s https://raw.githubusercontent.com/Conviva-Internal/conviva-vault-scripts/master/vault.sh ) get_secret -w vault.environment.company.tld -a okta -u ${VAULT_USER}  -p ${VAULT_PASS} -e mysql -s mysql-1 -k password
-```
 
 

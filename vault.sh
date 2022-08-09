@@ -91,7 +91,7 @@ get_new_password () {
 # Action/Command Helper Functions #
 ###################################
 get_token () {
-    TOKEN_DIR="/tmp/.vault/"
+    TOKEN_DIR=".vault"
     TOKEN_FILE="${TOKEN_DIR}/token"
     mkdir -p ${TOKEN_DIR} &> /dev/null
 

@@ -93,6 +93,7 @@ get_new_password () {
 get_token () {
     TOKEN_DIR=".vault"
     TOKEN_FILE="${TOKEN_DIR}/token"
+    [ "$NO_CACHE_TOKEN" ] && rm -rf ${TOKEN_DIR} &> /dev/null
     mkdir -p ${TOKEN_DIR} &> /dev/null
 
     get_vault_url
@@ -102,6 +103,7 @@ get_token () {
     if find "${TOKEN_FILE}" -mmin -240 2> /dev/null | grep -q token; then
         TOKEN=$(cat ${TOKEN_FILE})
     fi
+
     if ! echo $TOKEN | grep -q "^s\."; then
         get_vault_username
         get_vault_password
@@ -201,6 +203,7 @@ while [[ "$#" -gt 0 ]]; do
         list_users            ) ACTION="list_users"               ;;
         add_service_policy    ) ACTION="add_service_policy"       ;;
         add_service_user      ) ACTION="add_service_user"         ;;
+        --no-cache-token      ) NO_CACHE_TOKEN="true"             ;;
         -w|--website|--url    ) VAULT_URL="$2"           ; shift  ;;
         -a|--auth-method      ) VAULT_AUTH_METHOD="$2"   ; shift  ;;
         -u|--username         ) VAULT_USERNAME="$2"      ; shift  ;;

@@ -204,7 +204,6 @@ while [[ "$#" -gt 0 ]]; do
         list_users            ) ACTION="list_users"               ;;
         add_service_policy    ) ACTION="add_service_policy"       ;;
         add_service_user      ) ACTION="add_service_user"         ;;
-        # Disable for now: --no-cache-token      ) NO_CACHE_TOKEN="true"             ;;
         -w|--website|--url    ) VAULT_URL="$2"           ; shift  ;;
         -a|--auth-method      ) VAULT_AUTH_METHOD="$2"   ; shift  ;;
         -u|--username         ) VAULT_USERNAME="$2"      ; shift  ;;
